@@ -1,9 +1,9 @@
 public class MatrixAndWord {
-    public static String getCoordinate(String matrixString, String word) {
+    public String getCoordinate(String matrixString, String word) {
         char[][] matrix = getMatrix(matrixString);
         word = word.toUpperCase();
         for (int i = 1; i < matrix.length - 1; i++) {
-            for (int j = 1; j < matrix[i].length; j++) {
+            for (int j = 1; j < matrix[i].length - 1; j++) {
                 String result;
                 if (word.charAt(0) == matrix[i][j]) {
                     char[][] arr = cloneMatrix(matrix);
@@ -22,7 +22,7 @@ public class MatrixAndWord {
         throw new RuntimeException("Word was not find!");
     }
 
-    private static String checkForWord(char[][] matrix, int positionX,
+    private String checkForWord(char[][] matrix, int positionX,
                                        int positionY, String word, String result) {
         if (word.isEmpty()) {
             return result;
@@ -74,7 +74,7 @@ public class MatrixAndWord {
         return "ERROR";
     }
 
-    private static char[][] cloneMatrix(char[][] matrix) {
+    private char[][] cloneMatrix(char[][] matrix) {
         char[][] arr = new char[matrix.length][];
         for (int i = 0; i < matrix.length; i++) {
             arr[i] = matrix[i].clone();
@@ -82,7 +82,7 @@ public class MatrixAndWord {
         return arr;
     }
 
-    private static char[][] getMatrix(String matrix) {
+    private char[][] getMatrix(String matrix) {
         double side = Math.sqrt(matrix.length());
         if (side % 1 != 0) {
             throw new RuntimeException("Incorrect matrix!");
